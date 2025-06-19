@@ -20,8 +20,19 @@ class SbbApplicationTests {
 	@Test
 	void testJpa() {
 
-		Question q = this.questionRepository.findBySubject("What is sbb?");
-		assertEquals(1, q.getId());
+		List<Question> qList = this.questionRepository.findBySubjectLike("%sbb%");
+		Question q = qList.get(0);
+		assertEquals("What is sbb?", q.getSubject());
+
+//		Test #5
+
+//		Question q = this.questionRepository.findBySubjectAndContent("What is sbb?", "Please give me some answer!");
+//		assertEquals(1, q.getId())
+
+//		Test #4
+
+//		Question q = this.questionRepository.findBySubject("What is sbb?");
+//		assertEquals(1, q.getId());
 
 //		Test #3: search q by id and check subject
 

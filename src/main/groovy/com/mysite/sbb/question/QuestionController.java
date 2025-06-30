@@ -12,6 +12,8 @@ import jakarta.validation.Valid;
 // for url prefix
 import lombok.RequiredArgsConstructor;
 
+import com.mysite.sbb.answer.AnswerForm;
+
 // the lombok annotation will make constructor for final qRepo.
 // RequestMapping annotation will set url prefix
 @RequiredArgsConstructor
@@ -33,7 +35,7 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/detail/{id}")
-    public String detail(Model model, @PathVariable("id") Integer id) {
+    public String detail(Model model, @PathVariable("id") Integer id, AnswerForm answerForm) {
         Question question = this.questionService.getQuestion(id);
         model.addAttribute("question", question);
         return "question_detail";

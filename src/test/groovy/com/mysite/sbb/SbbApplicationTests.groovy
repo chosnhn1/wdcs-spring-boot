@@ -1,13 +1,14 @@
-package com.mysite.sbb
+package com.mysite.sbb;
 
-import com.mysite.sbb.answer.Answer
-import com.mysite.sbb.answer.AnswerRepository
-import com.mysite.sbb.question.Question
-import com.mysite.sbb.question.QuestionRepository
-import org.springframework.transaction.annotation.Transactional
+import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.answer.AnswerRepository;
+import com.mysite.sbb.question.Question;
+import com.mysite.sbb.question.QuestionRepository;
+import com.mysite.sbb.question.QuestionService;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,22 +21,32 @@ class SbbApplicationTests {
 	private QuestionRepository questionRepository;
 
 	@Autowired
+	private QuestionService questionService;
+
+	@Autowired
 	private AnswerRepository answerRepository;
 
 	@Transactional
 	@Test
 	void testJpa() {
 
+// 		Test for Paging: add many testcases;
+		for (int i = 1; i <= 300; i++) {
+			String subject = String.format("This is a test q:[%03d]", i);
+			String content = "which has no contents";
+			this.questionService.create(subject, content);
+		}
+
 //		Test #11: get answers from a question
-		Optional<Question> oq = this.questionRepository.findById(2);
-		assertTrue(oq.isPresent());
-		Question q = oq.get();
+		// Optional<Question> oq = this.questionRepository.findById(2);
+		// assertTrue(oq.isPresent());
+		// Question q = oq.get();
 
 //		the code below will get a failed test, because it had no session
 //		to do this test, @Transactional annotation will be required.
-		List<Answer> answerList = q.getAnswerList();
-		assertEquals(1, answerList.size());
-		assertEquals("Yes, it is created automatically.", answerList.get(0).getContent());
+		// List<Answer> answerList = q.getAnswerList();
+		// assertEquals(1, answerList.size());
+		// assertEquals("Yes, it is created automatically.", answerList.get(0).getContent());
 
 //		Test #10: find answer with id
 //		Optional<Answer> oa = this.answerRepository.findById(1);

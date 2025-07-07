@@ -52,5 +52,11 @@ public class UserController {
         return "redirect:/";
     }
 
+//  login
+//  POST will be handled by Spring Security, in SecurityConfig
+    @GetMapping("/login")
+    public String login() {
+        return "login_form";
+    }
 
 }

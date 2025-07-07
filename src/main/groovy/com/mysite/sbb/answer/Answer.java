@@ -3,6 +3,7 @@ package com.mysite.sbb.answer;
 import java.time.LocalDateTime;
 
 import com.mysite.sbb.question.Question;
+import com.mysite.sbb.user.SiteUser;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,10 +22,15 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @ManyToOne
+    private SiteUser author;
+
     @Column(columnDefinition = "TEXT")
     private String content;
 
     private LocalDateTime createDate;
+
+    private LocalDateTime modifyDate;
 
 //    annotation for rel
     @ManyToOne

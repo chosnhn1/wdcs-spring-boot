@@ -34,7 +34,7 @@ class SbbApplicationTests {
 		for (int i = 1; i <= 300; i++) {
 			String subject = String.format("This is a test q:[%03d]", i);
 			String content = "which has no contents";
-			this.questionService.create(subject, content);
+			this.questionService.create(subject, content, null);
 		}
 
 //		Test #11: get answers from a question

@@ -1,6 +1,7 @@
 <html layout:decorate="~{layout}">
 <div layout:fragment="content" class="container my-3">
     <h2 class="border-bottom py-2" th:text="${question.subject}"></h2>
+    <!-- Question Details -->
     <div class="card my-3">
         <div class="card-body">
             <article class="card-text" style="white-space: pre-line;" th:text="${question.content}"></article>
@@ -27,8 +28,11 @@
             </div>
         </div>
     </div>
+    <!-- Answers -->
     <h5 class="border-bottom my-3 py-2" th:text="|${#lists.size(question.answerList)}개의 답변이 있습니다.|"></h5>
     <div class="card my-3" th:each="answer : ${question.answerList}">
+        <!-- Answer Anchor -->
+        <a th:id="|answer_${answer.id}"></a>
         <div class="card-body">
             <div class="card-text" style="white-space: pre-line;" th:text="${answer.content}"></div>
             <div class="d-flex justify-content-end">
@@ -55,6 +59,7 @@
             </div>
         </div>
     </div>
+    <!-- Answer Submission -->
     <form th:action="@{|/answer/create/${question.id}|}" th:object="${answerForm}" method="POST" class="my-3">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         <textarea sec:authorize="isAnonymous()" disabled rows="10" class="form-control" th:field="*{content}"></textarea>

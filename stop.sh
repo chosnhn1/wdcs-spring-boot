@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SBB_PID=$(ps -ef | grep java | grep sbb | awk 'print $2')
+SBB_PID=$(ps -ef | grep java | grep sbb | awk '{ print $2 }')
 
 if [ -z "$SBB_PID" ];
 then 

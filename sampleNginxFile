@@ -1,4 +1,5 @@
-## insert this file into /etc/nginx/sites-enabled
+## insert lines below into conf file under /etc/nginx/sites-availables
+## and add it to enabled sites
 
 server {
 	listen 80;
